@@ -1,0 +1,43 @@
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap");
+
+@import "tailwindcss";
+@tailwind utilities;
+
+::-webkit-scrollbar {
+  @apply w-1 rounded-full;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  @apply bg-[#9d7ff0];
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  @apply bg-[#8916c7];
+}
+.scrollbar-hide::-webkit-scrollbar {
+  @apply h-[0.13rem] w-[0.13rem];
+}
+
+@theme {
+  --font-title: "Bebas Neue", sans-serif;
+  --font-other: "Bricolage Grotesque", sans-serif;
+
+  --color-secondary: oklch(0.7495 0.043 282.29);
+  --color-active: oklch(0.6417 0.2262 306.93);
+  --color-cards: oklch(0.3522 0.0882 283.5);
+}
+* {
+  @apply scroll-smooth;
+}
+.sidebar {
+  @apply duration-350;
+}
+.bg-cards {
+  @apply backdrop-blur-2xl;
+}
+body {
+  @apply bg-[#272c4d];
+  @apply m-0 p-0 border-0;
+}
