@@ -137,7 +137,6 @@ const AddStory = () => {
               ref={inputRef}
               type="file"
               accept="image/*"
-              capture="environment"
               onChange={handleChange}
               className="hidden"
             />
