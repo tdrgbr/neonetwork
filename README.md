@@ -103,6 +103,7 @@ PORT=port
 PGUSER=your_neon.tech_postgres_user
 PGHOST=your_neon.tech_postgres_hostname
 PGDATABASE=your_neon.tech_postgres_db
+PGPASSWORD=your_neon.tech_db_password
 
 NODE_ENV=development / production
 JWT_SECRET=your_jwt_secret_code
