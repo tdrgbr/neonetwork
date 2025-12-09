@@ -127,7 +127,7 @@ const UserStory = () => {
                   navigate("/");
                 }}
               >
-                <DeleteIcon className="h-12 p-3" />
+                <DeleteIcon className="h-12 w-12 p-3" />
               </button>
             </div>
           </div>
