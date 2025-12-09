@@ -28,7 +28,7 @@ export const getUserPosts = async (userId) => {
 
 export const deletePost = async (postId) => {
   try {
-    const res = await api.delete(`/posts/${postId}`, {
+    const res = await api.delete(`/posts/del/${postId}`, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
       },

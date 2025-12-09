@@ -429,7 +429,7 @@ const Profile = () => {
           <img
             src={`${profile.avatar}`}
             alt={profile.username}
-            className={`rounded-full h-48 w-48 max-lg:h-24 max-lg:w-24 object-fit relative ${
+            className={`flex grow rounded-full h-48 w-48 max-lg:h-20 max-lg:w-20 object-fit relative shrink-0 ${
               name === user.username
                 ? "hover:opacity-40 cursor-pointer transition-all duration-100"
                 : story?.is_public
@@ -465,9 +465,7 @@ const Profile = () => {
           <h1 className="text-white font-bold font-other text-3xl max-lg:text-xl">
             {profile.username}
           </h1>
-          <h6 className="text-secondary font-other">
-            {profile.accounttype ? "Public account" : "Private account"}
-          </h6>
+
           <div className="flex items-center space-x-3 mt-2">
             <h1
               className="text-white font-other text-md cursor-pointer"
@@ -482,7 +480,12 @@ const Profile = () => {
                 }
               }}
             >
-              <b>{followers.length}</b> followers
+              <div className="flex flex-col">
+                <p>
+                  <b>{followers.length}</b>
+                </p>
+                <p>followers</p>
+              </div>
             </h1>
             <h1
               className="text-white font-other text-md cursor-pointer"
@@ -497,14 +500,19 @@ const Profile = () => {
                 }
               }}
             >
-              <b>{following.length}</b> following
+              <div className="flex flex-col">
+                <p>
+                  <b>{following.length}</b>
+                </p>
+                <p>following</p>
+              </div>
             </h1>
           </div>
 
           <div className="flex space-x-3 mt-3">
             {name !== user.username ? (
               <button
-                className={`rounded-full h-8 flex-grow ${
+                className={`rounded-xl h-8 flex-grow ${
                   followUser || requested ? "bg-black/50" : "bg-active"
                 } text-white font-other cursor-pointer hover:scale-102 flex items-center justify-center space-x-2 p-5`}
                 onClick={() => {
@@ -544,7 +552,7 @@ const Profile = () => {
             ) : (
               <NavLink
                 to="/settings"
-                className="rounded-full h-8 flex-grow bg-black/50 text-white font-other hover:scale-102 flex items-center justify-center space-x-2 p-5"
+                className="rounded-xl h-8 flex-grow bg-black/50 text-white font-other hover:scale-102 flex items-center justify-center space-x-2 p-5"
               >
                 <SettingsIcon className="h-5" />
                 <span className="max-lg:text-xs">Settings</span>
@@ -552,11 +560,11 @@ const Profile = () => {
             )}
             {name !== user.username && (profile.accounttype || followUser) && (
               <button
-                className="rounded-full h-8 flex-grow bg-black/50 text-white font-other hover:scale-102 flex items-center justify-center space-x-2 p-5 cursor-pointer"
+                className="rounded-xl h-8 bg-black/50 text-white font-other hover:scale-102 flex items-center justify-center space-x-2 py-5 px-3 cursor-pointer"
                 onClick={() => handleConversation(profile, navigate)}
               >
-                <MessageIcon className="h-6" />
-                <span className="max-lg:text-xs">Message</span>
+                <MessageIcon className="h-6 max-md:ml-1" />
+                <span className="max-md:hidden">Message</span>
               </button>
             )}
           </div>
@@ -571,15 +579,18 @@ const Profile = () => {
 
           <div className="flex flex-wrap flex-grow justify-start max-lg:ml-15 max-lg:pr-15 min-lg:p-10 gap-5">
             {posts.length > 0 ? (
-              posts.map((post) => (
-                <PostCard
-                  key={post.id}
-                  imgUrl={`${post.image}`}
-                  likes={post.likes_count}
-                  comments={post.comments_count}
-                  to={`/post/${post.id}`}
-                />
-              ))
+              posts.map((post) => {
+                if (post.is_public)
+                  return (
+                    <PostCard
+                      key={post.id}
+                      imgUrl={`${post.image}`}
+                      likes={post.likes_count}
+                      comments={post.comments_count}
+                      to={`/post/${post.id}`}
+                    />
+                  );
+              })
             ) : (
               <span className="text-white flex justify-center text-lg">
                 No posts to show.

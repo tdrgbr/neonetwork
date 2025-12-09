@@ -180,7 +180,7 @@ const MessageContent = () => {
 
   return (
     <>
-      <h1 className="font-title mt-30 ml-7 min-lg:ml-90 text-2xl text-white">
+      <h1 className="font-title mt-30 ml-7 min-lg:ml-90 text-2xl text-white max-md:hidden">
         <span className="text-secondary">Connections / </span>Messages
       </h1>
 

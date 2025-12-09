@@ -171,7 +171,7 @@ const AddStory = () => {
                     {!loading ? (
                       "Publish"
                     ) : (
-                      <div className="flex inline-flex gap-2">
+                      <div className="inline-flex gap-2">
                         <ClipLoader color="#fff" size="20px" />
                         Uploading story..
                       </div>

@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import ShowComment from "./ShowComment";
-import { NavLink } from "react-router-dom";
+import { useNavigate, NavLink } from "react-router-dom";
 import LikeIcon from "../../assets/icons/like.svg?react";
+import DeleteIcon from "../../assets/icons/delete.svg?react";
 import CommentIcon from "../../assets/icons/comment.svg?react";
-import { likePost, commentPost } from "../../utils/postsApi";
+import { likePost, commentPost, deletePost } from "../../utils/postsApi";
 import { calcDate } from "../../utils/calculateDate";
 import { useAuth } from "../../context/AuthContext";
 import { DOMAIN } from "../../utils/config";
@@ -97,6 +98,7 @@ const ShowPost = ({ post }) => {
   const [time, setTime] = useState("");
   const [unit, setUnit] = useState("");
   const { user } = useAuth();
+  const navigate = useNavigate();
   const initialLocal = post ?? {
     id: null,
     image: "",
@@ -120,14 +122,30 @@ const ShowPost = ({ post }) => {
   return (
     <>
       <div className="flex flex-col space-y-0 shrink-0 mb-10 w-full max-w-[520px]">
-        <img
-          src={`${localPost.image}`}
-          alt="post_image"
-          className="rounded-t-3xl w-full  object-cover aspect-[2/3] "
-          draggable={false}
-          onContextMenu={(e) => e.preventDefault()}
-        />
-
+        <div className="relative">
+          <div className="absolute top-1 right-1 flex flex-col justify-between">
+            {post.username === user.username ? (
+              <button
+                className="bg-black/70 p-3 text-white rounded-2xl shadow-lg cursor-pointer"
+                onClick={async () => {
+                  await deletePost(post.id);
+                  navigate(`/profile/${user.username}`);
+                }}
+              >
+                <DeleteIcon className="h-6 w-6" />
+              </button>
+            ) : (
+              ""
+            )}
+          </div>
+          <img
+            src={`${localPost.image}`}
+            alt="post_image"
+            className="rounded-t-3xl w-full  object-cover aspect-[2/3] "
+            draggable={false}
+            onContextMenu={(e) => e.preventDefault()}
+          />
+        </div>
         <div className="bg-cards w-full rounded-b-2xl p-6 flex flex-col lg:flex-row lg:space-x-6 space-y-4 lg:space-y-0">
           <div className="flex flex-col flex-1 min-w-0">
             <div className="flex items-center space-x-3">

@@ -4,7 +4,6 @@ import { SidebarLinks, MobileLinks } from "./SidebarLinks";
 import ProfileCard from "../Users/ProfileCard";
 import { NavLink, useNavigate } from "react-router-dom";
 import Searchbar from "./Searchbar";
-import { motion, AnimatePresence } from "motion/react";
 import NotificationsIcon from "../../assets/icons/like.svg?react";
 import MessagesIcon from "../../assets/icons/messages.svg?react";
 import HomeIcon from "../../assets/icons/home.svg?react";
@@ -12,7 +11,6 @@ import SearchIcon from "../../assets/icons/search.svg?react";
 import PostIcon from "../../assets/icons/follow.svg?react";
 import ProfileIcon from "../../assets/icons/profile.svg?react";
 import SettingsIcon from "../../assets/icons/settings.svg?react";
-import CheckedIcon from "../../assets/icons/checked.svg?react";
 import { useAuth } from "../../context/AuthContext";
 import { socket } from "../../utils/socket";
 
