@@ -5,6 +5,7 @@ import { useNavigate, NavLink } from "react-router-dom";
 import LikeIcon from "../../assets/icons/like.svg?react";
 import DeleteIcon from "../../assets/icons/delete.svg?react";
 import CommentIcon from "../../assets/icons/comment.svg?react";
+import SendIcon from "../../assets/icons/messages.svg?react";
 import { likePost, commentPost, deletePost } from "../../utils/postsApi";
 import { calcDate } from "../../utils/calculateDate";
 import { useAuth } from "../../context/AuthContext";
@@ -37,18 +38,18 @@ const handleSubmit = async (postId, comment, setPost, setComment, user) => {
 function CommentInput({ postId, setPost, user }) {
   const [comment, setComment] = useState("");
   return (
-    <div className="mt-8 bg-cards w-auto h-10 mr-4 rounded-xl text-secondary font-other relative">
+    <div className="mt-8 bg-cards w-auto h-7 mr-4 rounded-xl text-secondary font-other relative">
       <div className="flex">
         <NavLink to={`/profile/${user.username}`}>
           <img
             src={`${user.avatar}`}
             alt="avatar"
-            className="h-14 rounded-full mr-5"
+            className="h-12 w-12 rounded-full mr-5 ml-2"
           />
         </NavLink>
         <input
           type="text"
-          className="w-full focus:outline-blue-300 rounded-xl outline-1 outline-active focus:outline-1 h-14 p-6 placeholder-gray-400 focus:placeholder-gray-300"
+          className="bg-highlight w-full h-12 p-6 rounded-xl focus:outline-1 focus:outline-active placeholder-secondary focus:placeholder-secondary"
           placeholder="Add a comment.."
           onChange={(e) => setComment(e.target.value)}
           value={comment}
@@ -60,13 +61,7 @@ function CommentInput({ postId, setPost, user }) {
           }}
         />
       </div>
-      <img
-        src="https://uxwing.com/wp-content/themes/uxwing/download/communication-chat-call/send-white-icon.png"
-        onContextMenu={(e) => e.preventDefault()}
-        draggable={false}
-        onClick={() => handleSubmit(postId, comment, setPost, setComment, user)}
-        className="absolute right-5 top-1/2 h-4 w-5 cursor-pointer"
-      />
+      <SendIcon className="absolute right-5 top-1/2 w-6 h-6 cursor-pointer" />
     </div>
   );
 }
@@ -126,7 +121,7 @@ const ShowPost = ({ post }) => {
           <div className="absolute -top-3 -right-3 flex flex-col justify-between">
             {post.username === user.username ? (
               <button
-                className="bg-secondary p-3 text-text-highlight rounded-2xl shadow-lg cursor-pointer"
+                className="bg-inactive p-3 text-secondary rounded-2xl shadow-lg cursor-pointer"
                 onClick={async () => {
                   await deletePost(post.id);
                   navigate(`/profile/${user.username}`);

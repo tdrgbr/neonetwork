@@ -225,6 +225,12 @@ const Settings = () => {
               />
             </button>
           </div>
+          <div className="py-4 w-full font-other flex space-x-3 bg-yellow-700 rounded-xl items-center justify-start mt-3">
+            <h1 className="text-md px-3 text-text-highlight">
+              Note: You can’t change your username, email, or password right
+              now. (Testing mode)
+            </h1>
+          </div>
 
           <div className="py-3 w-full font-other space-y-3 flex flex-col">
             <span>Username</span>
@@ -233,11 +239,13 @@ const Settings = () => {
                 type="input"
                 className="w-full focus:outline-0 p-1 placeholder-secondary"
                 value={username}
-                onChange={(e) => setUsername(e.target.value)}
+                onChange={(e) => setUsername("")}
+                disabled
               />
               <SendIcon
                 className="absolute right-5 top-1/2 transform -translate-y-1/2 h-6 w-6 cursor-pointer"
-                onClick={() => handleUsername(username, setUserInfo)}
+                onClick={() => handleUsername(username)}
+                disabled
               />
             </div>
           </div>
@@ -249,7 +257,8 @@ const Settings = () => {
                 type="email"
                 className="w-full focus:outline-0 p-1 placeholder-secondary"
                 value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={(e) => setEmail("")}
+                disabled
               />
               <SendIcon
                 className="absolute right-5 top-1/2 transform -translate-y-1/2 h-6 w-6 cursor-pointer"
@@ -265,7 +274,8 @@ const Settings = () => {
                 type="password"
                 className="w-full focus:outline-0 p-1 placeholder-secondary"
                 placeholder="Enter your current password"
-                onChange={(e) => setCurrentPass(e.target.value)}
+                onChange={(e) => setCurrentPass("")}
+                disabled
               />
             </div>
 
@@ -274,7 +284,8 @@ const Settings = () => {
                 type="password"
                 className="w-full focus:outline-0 p-1 placeholder-secondary"
                 placeholder="Enter your new password"
-                onChange={(e) => setNewPass(e.target.value)}
+                onChange={(e) => setNewPass("")}
+                disabled
               />
               <SendIcon
                 className="absolute right-5 top-1/2 transform -translate-y-1/2 h-6 w-6 cursor-pointer"
@@ -284,7 +295,7 @@ const Settings = () => {
 
             <button
               onClick={async () => await logout()}
-              className="mt-5 rounded-lg h-8 flex-grow bg-red-400 text-text-highlight font-other cursor-pointer hover:transition hover:scale-102 font-tightest flex items-center justify-center space-x-2 p-5"
+              className="mt-5 rounded-lg h-8 flex-grow bg-red-700 text-text-highlight font-other cursor-pointer hover:transition hover:scale-102 font-tightest flex items-center justify-center space-x-2 p-5"
             >
               <LogoutIcon className="h-6 w-6 text-text-highlight" />
               <span>Log out</span>

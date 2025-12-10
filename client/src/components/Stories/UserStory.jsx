@@ -103,7 +103,7 @@ const UserStory = () => {
           {/* Top overlay */}
           <div className="absolute top-0 left-0 w-full flex flex-col justify-between">
             <div className="flex justify-between items-center p-4">
-              <div className="flex space-x-3 items-center bg-secondary/50 text-text-highlight font-other text-md rounded-xl px-2 py-1">
+              <div className="flex space-x-3 items-center bg-inactive text-secondary font-other text-md rounded-xl px-2 py-1">
                 <img
                   src={`${story.avatar}`}
                   alt="profile"
@@ -113,7 +113,7 @@ const UserStory = () => {
                 />
                 <div>
                   {story.username}{" "}
-                  <span className="text-text-highlight text-sm">
+                  <span className="text-secondary text-sm">
                     {calcDate(story.created_at).time}
                     {calcDate(story.created_at).unit}
                   </span>
@@ -121,7 +121,7 @@ const UserStory = () => {
               </div>
 
               <button
-                className="bg-secondary/50 rounded-2xl shadow-lg cursor-pointer"
+                className="bg-inactive rounded-2xl shadow-lg cursor-pointer text-secondary"
                 onClick={() => {
                   StoryDelete(story.id);
                   navigate("/");

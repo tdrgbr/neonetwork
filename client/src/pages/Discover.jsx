@@ -22,7 +22,7 @@ const Discover = () => {
         <span className="text-secondary">Connections / </span>Discover
       </h1>
 
-      <div className="flex flex-grow justify-between h-14 pr-5 min-lg:ml-89 ml-7 mt-10 min-lg:hidden">
+      <div className="flex flex-grow justify-between h-12 pr-5 min-lg:ml-89 ml-7 mt-10 min-lg:hidden">
         <Searchbar />
       </div>
 
@@ -34,7 +34,7 @@ const Discover = () => {
         {users.map((user) => (
           <div
             key={user.id}
-            className="bg-cards w-full h-35 rounded-2xl hover:transition-all hover:scale-101 hover:shadow-lg hover:duration-300"
+            className="bg-cards w-full h-30 rounded-2xl hover:transition-all hover:scale-101 hover:shadow-lg hover:duration-300"
           >
             <div className="flex p-6 items-center justify-between">
               <div className="flex items-center space-x-5">
@@ -42,7 +42,7 @@ const Discover = () => {
                   <img
                     src={`${user.avatar}`}
                     alt="profile_img"
-                    className="h-24 rounded-full object-cover"
+                    className="h-18 rounded-full object-cover"
                     draggable={false}
                     onContextMenu={(e) => e.preventDefault()}
                   />
@@ -50,11 +50,13 @@ const Discover = () => {
                 <div className="flex-col">
                   <NavLink
                     to={`/profile/${user.username}`}
-                    className="font-other text-secondary text-xl font-bold"
+                    className="font-other text-secondary text-lg max-md:text-md font-bold "
                   >
-                    {user.username}
+                    <span className="truncate text-ellipsis">
+                      {user.username}
+                    </span>
                   </NavLink>
-                  <h1 className="font-other text-secondary text-lg">
+                  <h1 className="font-other text-secondary text-md max-lg:text-sm">
                     {user.followers_count} followers
                   </h1>
                 </div>
@@ -62,7 +64,7 @@ const Discover = () => {
 
               <NavLink
                 to={`/profile/${user.username}`}
-                className="rounded-xl h-10 w-34 bg-active/40 text-secondary font-other cursor-pointer hover:transition hover:scale-102 font-tightest flex items-center justify-center space-x-2"
+                className="rounded-xl h-8 w-30 bg-active text-text-highlight font-other cursor-pointer hover:transition hover:scale-102 font-tightest flex items-center justify-center space-x-2"
               >
                 <span>View profile</span>
               </NavLink>
