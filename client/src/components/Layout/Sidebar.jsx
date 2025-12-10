@@ -42,6 +42,7 @@ const Sidebar = () => {
     else document.documentElement.classList.remove("dark");
     localStorage.setItem("theme", darkMode ? "dark" : "light");
   }, [darkMode]);
+
   useEffect(() => {
     const handleScroll = () => {
       const currentScroll = window.pageYOffset;
@@ -138,7 +139,7 @@ const Sidebar = () => {
 
         <div className="flex space-x-3 right-2">
           <button
-            className="bg-cards h-14 w-14 flex items-center justify-center rounded-2xl p-2 cursor-pointer"
+            className="bg-cards h-12 w-12 flex items-center justify-center rounded-2xl p-2 cursor-pointer"
             onClick={toggleTheme}
           >
             <DarkModeIcon className="h-8 w-8 text-secondary" />
@@ -148,7 +149,7 @@ const Sidebar = () => {
               if (notificationBadge) setNotificationBadge(false);
               navigate("/notifications");
             }}
-            className="bg-cards h-14 w-14 flex items-center justify-center rounded-2xl p-2"
+            className="bg-cards h-12 w-12 flex items-center justify-center rounded-2xl p-2"
           >
             <div className="relative inline-block cursor-pointer">
               <NotificationsIcon className="w-7 h-8 text-secondary" />
@@ -161,7 +162,7 @@ const Sidebar = () => {
           </button>
           <NavLink
             to="/messages"
-            className="bg-cards h-14 w-14 flex items-center justify-center rounded-2xl p-2 cursor-pointer"
+            className="bg-cards h-12 w-12 flex items-center justify-center rounded-2xl p-2 cursor-pointer"
           >
             <MessagesIcon className="w-7 h-8 text-secondary" />
           </NavLink>
