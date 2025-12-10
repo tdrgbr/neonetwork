@@ -451,7 +451,7 @@ const Profile = () => {
             }}
           />
           <EditIcon
-            className={`absolute -right-2 bottom-2 h-10 w-10 text-secondary bg-profile rounded-full p-2 shadow-md cursor-pointer hover:scale-110 transition-transform duration-150 ${
+            className={`absolute -right-2 bottom-2 h-10 w-10 text-secondary bg-profile rounded-full p-2 shadow-md cursor-pointer hover:scale-110 transition-transform duration-150 max-lg:h-8 max-lg:w-8 ${
               name !== user.username ? "hidden" : ""
             }`}
             onClick={() => {

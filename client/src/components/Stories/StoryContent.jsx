@@ -163,7 +163,7 @@ const StoryContent = () => {
             />
           ) : (
             <motion.div
-              className="rounded-3xl h-[60vh] max-h-[60vh] aspect-[3/4] max-lg:h-[40vh] max-lg:w-20 blur-md  max-lg:-right-10 top-1/2 transform  z-0 cursor-pointer pr-30 bg-inactive"
+              className="rounded-3xl h-[60vh] max-h-[60vh] max-lg:h-[30vh] max-lg:w-20 blur-md  z-0 cursor-pointer min-lg:pl-50 bg-inactive"
               onClick={() => {
                 if (mode === "single")
                   return navigate(`/profile/${feed[0].username}`);
@@ -184,9 +184,9 @@ const StoryContent = () => {
             transition={{ duration: 0.4 }}
           >
             <img
-              src={curr?.image ? `${curr.image}` : placeholder}
+              src={curr?.image ? `${curr.image}` : ""}
               alt="story"
-              className="rounded-t-2xl aspect-[9/16] max-h-[80vh] max-lg:max-h-[70vh] object-cover cursor-pointer shrink-0"
+              className="rounded-t-2xl aspect-[9/16] max-h-[80vh] max-lg:min-h-[70vh] object-cover cursor-pointer shrink-0"
               onClick={() => setPause((p) => !p)}
               draggable={false}
               onContextMenu={(e) => e.preventDefault()}
@@ -289,7 +289,7 @@ const StoryContent = () => {
             />
           ) : (
             <motion.div
-              className="rounded-3xl h-[60vh] max-h-[60vh] aspect-[3/4] max-lg:h-[40vh] max-lg:w-20 blur-md  max-lg:-right-10 top-1/2 transform  z-0 cursor-pointer pr-30 bg-inactive"
+              className="rounded-3xl h-[60vh] max-h-[60vh] max-lg:h-[30vh] max-lg:w-20 blur-md  z-0 cursor-pointer min-lg:pr-50 bg-inactive"
               onClick={() => {
                 if (mode === "single")
                   return navigate(`/profile/${feed[0].username}`);

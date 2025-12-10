@@ -132,14 +132,14 @@ const Sidebar = () => {
       >
         <NavLink
           to="/"
-          className="font-title text-secondary text-4xl text-left"
+          className="font-title text-secondary text-3xl text-left"
         >
           Neonetwork
         </NavLink>
 
-        <div className="flex space-x-3 right-2">
+        <div className="flex space-x-3 ">
           <button
-            className="bg-cards h-12 w-12 flex items-center justify-center rounded-2xl p-2 cursor-pointer"
+            className="bg-cards h-11 w-11 flex items-center justify-center rounded-2xl p-2 cursor-pointer"
             onClick={toggleTheme}
           >
             <DarkModeIcon className="h-8 w-8 text-secondary" />
@@ -149,7 +149,7 @@ const Sidebar = () => {
               if (notificationBadge) setNotificationBadge(false);
               navigate("/notifications");
             }}
-            className="bg-cards h-12 w-12 flex items-center justify-center rounded-2xl p-2"
+            className="bg-cards h-11 w-11 flex items-center justify-center rounded-2xl p-2"
           >
             <div className="relative inline-block cursor-pointer">
               <NotificationsIcon className="w-7 h-8 text-secondary" />
@@ -162,7 +162,7 @@ const Sidebar = () => {
           </button>
           <NavLink
             to="/messages"
-            className="bg-cards h-12 w-12 flex items-center justify-center rounded-2xl p-2 cursor-pointer"
+            className="bg-cards h-11 w-11 flex items-center justify-center rounded-2xl p-2 cursor-pointer"
           >
             <MessagesIcon className="w-7 h-8 text-secondary" />
           </NavLink>
