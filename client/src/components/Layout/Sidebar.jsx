@@ -11,6 +11,7 @@ import SearchIcon from "../../assets/icons/search.svg?react";
 import PostIcon from "../../assets/icons/follow.svg?react";
 import ProfileIcon from "../../assets/icons/profile.svg?react";
 import SettingsIcon from "../../assets/icons/settings.svg?react";
+import DarkModeIcon from "../../assets/icons/dark.svg?react";
 import { useAuth } from "../../context/AuthContext";
 import { socket } from "../../utils/socket";
 
@@ -21,6 +22,9 @@ const Sidebar = () => {
   const navigate = useNavigate();
   const { user } = useAuth();
   const [notificationBadge, setNotificationBadge] = useState(false);
+  const [darkMode, setDarkMode] = useState(
+    localStorage.getItem("theme") === "dark"
+  );
   useEffect(() => {
     function handler(notification) {
       setNotificationBadge(true);
@@ -30,6 +34,14 @@ const Sidebar = () => {
       socket.off("receiveNotification", handler);
     };
   }, []);
+  const toggleTheme = () => {
+    setDarkMode(!darkMode);
+  };
+  useEffect(() => {
+    if (darkMode) document.documentElement.classList.add("dark");
+    else document.documentElement.classList.remove("dark");
+    localStorage.setItem("theme", darkMode ? "dark" : "light");
+  }, [darkMode]);
   useEffect(() => {
     const handleScroll = () => {
       const currentScroll = window.pageYOffset;
@@ -46,8 +58,11 @@ const Sidebar = () => {
   return (
     <>
       {/* Sidebar */}
-      <div className="max-lg:hidden w-80 bg-cards fixed min-h-screen max-h-screen overflow-y-auto flex flex-col p-5 pt-8 transition-all duration-300 z-50">
-        <NavLink to="/" className="font-title text-white text-5xl text-left">
+      <div className="max-lg:hidden w-70 bg-cards fixed min-h-screen max-h-screen overflow-y-auto flex flex-col p-5 pt-8 transition-all duration-300 z-50">
+        <NavLink
+          to="/"
+          className="font-title text-secondary text-5xl text-left"
+        >
           Neonetwork
         </NavLink>
 
@@ -55,15 +70,15 @@ const Sidebar = () => {
         <ProfileCard name={user.username} avatar={user.avatar} />
 
         {/* Links */}
-        <div className="flex-col mt-5 flex-1 space-y-3 sidebar">
-          <h1 className="font-title text-white text-xl text-left tracking-widest mt-7">
+        <div className="flex-col mt-5 flex-1 space-y-1 sidebar">
+          <h1 className="font-title text-secondary text-xl text-left tracking-widest mt-7 mb-5">
             Connections
           </h1>
           <SidebarLinks to="/" label="Feed" icon={HomeIcon} />
           <SidebarLinks to="/discover" label="Discover" icon={SearchIcon} />
           <SidebarLinks to="/create" label="New post" icon={PostIcon} />
 
-          <h1 className="font-title text-white text-xl text-left tracking-widest mt-10 mb-5">
+          <h1 className="font-title text-secondary text-xl text-left tracking-widest mt-10 mb-5">
             Privacy
           </h1>
           <SidebarLinks to="/settings" label="Settings" icon={SettingsIcon} />
@@ -71,20 +86,26 @@ const Sidebar = () => {
       </div>
 
       {/* Topbar */}
-      <div className="max-lg:hidden absolute top-6 left-90 right-2 flex justify-between items-center h-14 z-10">
-        <div className="flex flex-grow justify-between h-14 pr-5">
+      <div className="max-lg:hidden absolute top-6 left-80 right-2 flex justify-between items-center h-14 z-10 mr-3">
+        <div className="flex flex-grow justify-between h-12 ">
           <Searchbar />
 
           <div className="flex space-x-3 right-2">
             <button
-              className="bg-cards h-14 w-14 flex items-center justify-center rounded-xl p-2 cursor-pointer"
+              className="bg-cards h-12 w-12 flex items-center justify-center rounded-2xl p-2 cursor-pointer"
+              onClick={toggleTheme}
+            >
+              <DarkModeIcon className="h-8 text-secondary" />
+            </button>
+            <button
+              className="bg-cards h-12 w-12 flex items-center justify-center rounded-xl p-2 cursor-pointer"
               onClick={() => {
                 if (notificationBadge) setNotificationBadge(false);
                 navigate("/notifications");
               }}
             >
               <div className="relative inline-block cursor-pointer">
-                <NotificationsIcon className="w-9 h-8 text-white" />
+                <NotificationsIcon className="w-7 h-7 text-secondary" />
                 <span
                   className={`absolute bottom-7 left-8 h-2 w-2 bg-red-500 rounded-full ${
                     !notificationBadge ? "hidden" : ""
@@ -94,9 +115,9 @@ const Sidebar = () => {
             </button>
             <NavLink
               to="/messages"
-              className="bg-cards h-14 w-14 flex items-center justify-center rounded-2xl p-2 cursor-pointer"
+              className="bg-cards h-12 w-12 flex items-center justify-center rounded-2xl p-2 cursor-pointer"
             >
-              <MessagesIcon className="h-8 text-white" />
+              <MessagesIcon className="h-8 text-secondary" />
             </NavLink>
           </div>
         </div>
@@ -108,11 +129,20 @@ const Sidebar = () => {
           hideMobile ? "hidden" : ""
         }`}
       >
-        <NavLink to="/" className="font-title text-white text-4xl text-left">
+        <NavLink
+          to="/"
+          className="font-title text-secondary text-4xl text-left"
+        >
           Neonetwork
         </NavLink>
 
         <div className="flex space-x-3 right-2">
+          <button
+            className="bg-cards h-14 w-14 flex items-center justify-center rounded-2xl p-2 cursor-pointer"
+            onClick={toggleTheme}
+          >
+            <DarkModeIcon className="h-8 w-8 text-secondary" />
+          </button>
           <button
             onClick={() => {
               if (notificationBadge) setNotificationBadge(false);
@@ -121,7 +151,7 @@ const Sidebar = () => {
             className="bg-cards h-14 w-14 flex items-center justify-center rounded-2xl p-2"
           >
             <div className="relative inline-block cursor-pointer">
-              <NotificationsIcon className="w-7 h-8 text-white" />
+              <NotificationsIcon className="w-7 h-8 text-secondary" />
               <span
                 className={`absolute bottom-7 left-8 h-2 w-2 bg-red-500 rounded-full ${
                   !notificationBadge ? "hidden" : ""
@@ -133,20 +163,20 @@ const Sidebar = () => {
             to="/messages"
             className="bg-cards h-14 w-14 flex items-center justify-center rounded-2xl p-2 cursor-pointer"
           >
-            <MessagesIcon className="w-7 h-8 text-white" />
+            <MessagesIcon className="w-7 h-8 text-secondary" />
           </NavLink>
         </div>
       </div>
 
       {/* Mobile Bottom Navigation */}
       <div
-        className={`min-lg:hidden h-24 bg-cards rounded-3xl fixed bottom-3 left-3 right-3 flex justify-around items-center p-6 m-3 font-other border-2 border-active z-50 transition-all duration-300 ${
+        className={`min-lg:hidden bg-cards rounded-3xl fixed bottom-3 left-3 right-3 flex justify-around items-center px-5 py-3  font-other border-profile border-1 z-50 transition-all duration-300 ${
           hideMobile ? "translate-y-100" : "translate-y-0"
         }`}
       >
         <MobileLinks to="/" label="Feed" icon={HomeIcon} />
         <MobileLinks to="/discover" label="Discover" icon={SearchIcon} />
-        <MobileLinks to="/create" label="New post" icon={PostIcon} />
+        <MobileLinks to="/create" label="Create" icon={PostIcon} />
         <MobileLinks
           to={`/profile/${user.username}`}
           label="Profile"

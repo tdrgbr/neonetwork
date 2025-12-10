@@ -27,7 +27,8 @@ const StoryContent = () => {
   const { storyUserId } = useParams();
   const [searchParams] = useSearchParams();
   const mode = searchParams.get("mode");
-  const placeholder = "https://imgur.com/YkVFjjU.png";
+  const placeholder = "<div></div>";
+  const [isFinished, setIsFinised] = useState(false);
 
   useEffect(() => {
     const LoadStories = async () => {
@@ -75,16 +76,13 @@ const StoryContent = () => {
         await viewStory(feed[index].id);
       } catch {}
     };
-
     const interval = setInterval(() => {
       setProgress((prev) => {
         if (pause) return prev;
         if (prev >= 100) {
           setIndex((prevIndex) => {
             if (prevIndex === feed.length - 1) {
-              if (mode === "single")
-                return navigate(`/profile/${feed[0].username}`);
-              else if (mode === "feed") return navigate("/");
+              setIsFinised(true);
               return prevIndex;
             }
             return prevIndex + 1;
@@ -94,27 +92,24 @@ const StoryContent = () => {
         return prev + 1;
       });
     }, 50);
-
+    if (isFinished) {
+      if (mode === "single") return navigate(`/profile/${feed[0].username}`);
+      else if (mode === "feed") return navigate("/");
+    }
     StoryView();
     return () => clearInterval(interval);
-  }, [pause, feed.length, navigate, index]);
+  }, [pause, feed.length, navigate, index, isFinished]);
 
   if (feed.length === 0) {
     return (
       <div className="relative flex items-center justify-center w-full h-full overflow-hidden pt-6 pb-10 mt-15">
         <motion.div
-          className="absolute inset-0 bg-[#272c4d] rounded-2xl shadow-lg h-full"
+          className="absolute inset-0 bg-cards rounded-2xl shadow-lg h-full"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
         />
-        <img
-          src={placeholder}
-          alt="placeholder"
-          className="rounded-3xl max-h-[60vh] aspect-[3/4] object-cover z-10"
-          draggable={false}
-          onContextMenu={(e) => e.preventDefault()}
-        />
+        <div className="rounded-3xl h-[60vh] max-h-[60vh] aspect-[3/4] object-cover z-10" />
       </div>
     );
   }
@@ -125,8 +120,8 @@ const StoryContent = () => {
 
   if (loading) {
     return (
-      <div className="flex justify-center items-center min-h-screen">
-        <ClipLoader color="#b15af5" size={60} />
+      <div className="flex justify-center items-center min-h-screen text-secondary">
+        <ClipLoader color="" size={60} />
       </div>
     );
   }
@@ -134,7 +129,7 @@ const StoryContent = () => {
   return (
     <div className="relative flex items-center justify-center w-full h-full overflow-hidden pt-6 pb-10 mt-15">
       <motion.div
-        className="absolute inset-0 bg-[#272c4d] rounded-2xl shadow-lg h-full"
+        className="absolute inset-0 rounded-2xl shadow-lg h-full"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
@@ -143,29 +138,39 @@ const StoryContent = () => {
       <div className="relative flex items-center justify-center w-full h-full min-lg:ml-80">
         {/* Previous story */}
         <AnimatePresence mode="wait">
-          <motion.img
-            key={`left-${index}`}
-            src={prevItem?.image ? `${prevItem.image}` : placeholder}
-            alt="prev_story"
-            className="rounded-3xl max-h-[60vh] aspect-[3/4] max-lg:h-[40vh] max-lg:w-30 blur-md object-cover absolute left-1/9 max-lg:left-2 top-1/2 transform -translate-y-1/2 z-0 cursor-pointer"
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: 20 }}
-            transition={{ duration: 0.4, ease: "easeInOut" }}
-            onClick={() => {
-              if (index === 0) {
+          {prevItem ? (
+            <motion.img
+              key={`left-${index}`}
+              src={prevItem?.image}
+              className="rounded-3xl max-h-[60vh] aspect-[3/4] max-lg:h-[40vh] max-lg:w-30 blur-md object-cover absolute left-1/9 max-lg:left-2 top-1/2 transform -translate-y-1/2 z-0 cursor-pointer"
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: 20 }}
+              transition={{ duration: 0.4, ease: "easeInOut" }}
+              onClick={() => {
+                if (index === 0) {
+                  if (mode === "single")
+                    return navigate(`/profile/${feed[0].username}`);
+                  else if (mode === "feed") return navigate("/");
+                }
+                setDirection(0);
+                setProgress(0);
+                setIndex((i) => Math.max(0, i - 1));
+                setPause(false);
+              }}
+              draggable={false}
+              onContextMenu={(e) => e.preventDefault()}
+            />
+          ) : (
+            <motion.div
+              className="rounded-3xl h-[60vh] max-h-[60vh] aspect-[3/4] max-lg:h-[40vh] max-lg:w-20 blur-md  max-lg:-right-10 top-1/2 transform  z-0 cursor-pointer pr-30 bg-inactive"
+              onClick={() => {
                 if (mode === "single")
                   return navigate(`/profile/${feed[0].username}`);
                 else if (mode === "feed") return navigate("/");
-              }
-              setDirection(0);
-              setProgress(0);
-              setIndex((i) => Math.max(0, i - 1));
-              setPause(false);
-            }}
-            draggable={false}
-            onContextMenu={(e) => e.preventDefault()}
-          />
+              }}
+            ></motion.div>
+          )}
         </AnimatePresence>
 
         {/* Central story */}
@@ -193,7 +198,7 @@ const StoryContent = () => {
               <div className="flex justify-between items-center p-4 pointer-events-auto">
                 <NavLink
                   to={`/profile/${curr?.username}`}
-                  className="flex space-x-3 items-center bg-black/50 text-white font-other text-md rounded-xl px-3 py-2 max-w-[70%] truncate"
+                  className="flex space-x-3 items-center bg-secondary/50 text-text-highlight font-other text-md rounded-xl px-3 py-2 max-w-[70%] truncate"
                 >
                   <img
                     src={`${curr?.avatar}`}
@@ -206,12 +211,14 @@ const StoryContent = () => {
                     <span className="font-bold truncate">
                       {curr?.username || ""}
                     </span>
-                    <span className="text-secondary text-sm ml-1">1h ago</span>
+                    <span className="text-text-highlight text-sm ml-1">
+                      1h ago
+                    </span>
                   </div>
                 </NavLink>
 
                 <button
-                  className="bg-black/50 text-white rounded-2xl p-2 shadow-lg flex-shrink-0 ml-2"
+                  className="bg-black/50 text-secondary rounded-2xl p-2 shadow-lg flex-shrink-0 ml-2"
                   onClick={() => {
                     if (mode === "single")
                       return navigate(`/profile/${curr?.username}`);
@@ -234,7 +241,7 @@ const StoryContent = () => {
 
               {/* Like button */}
               <button
-                className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-black/50 text-white rounded-2xl p-3 shadow-lg text-xl pointer-events-auto"
+                className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-secondary/50 text-text-highlight rounded-2xl p-3 shadow-lg text-xl pointer-events-auto "
                 onClick={async () => {
                   try {
                     likeStory(feed[index].id);
@@ -248,8 +255,10 @@ const StoryContent = () => {
                 }}
               >
                 <LikeIcon
-                  className={`h-9 hover:scale-110 transition-transform duration-200 ${
-                    liked[index] ? "text-active scale-110" : "text-white"
+                  className={`h-10 w-10 hover:scale-110 transition-transform duration-200 ${
+                    liked[index]
+                      ? "text-active scale-110"
+                      : "text-text-highlight"
                   }`}
                 />
               </button>
@@ -259,29 +268,35 @@ const StoryContent = () => {
 
         {/* Next story */}
         <AnimatePresence mode="wait">
-          <motion.img
-            key={`right-${index}`}
-            src={nextItem?.image ? `${nextItem.image}` : placeholder}
-            alt="next_story"
-            className="rounded-3xl max-h-[60vh] aspect-[3/4] max-lg:h[40vh] max-lg:w-30 blur-md object-cover absolute right-3 max-lg:-right-20 top-1/2 transform -translate-y-1/2 z-0 cursor-pointer"
-            initial={{ opacity: 0, x: 0 }}
-            animate={{ opacity: 1, x: -100 }}
-            exit={{ opacity: 0, x: 0 }}
-            transition={{ duration: 0.4, ease: "easeInOut" }}
-            onClick={() => {
-              setDirection(1);
-              setProgress(0);
-              if (index === feed.length - 1) {
+          {nextItem ? (
+            <motion.img
+              key={`right-${index}`}
+              src={nextItem?.image ? `${nextItem.image}` : placeholder}
+              alt="next_story"
+              className="rounded-3xl max-h-[60vh] aspect-[3/4] max-lg:h[40vh] max-lg:w-30 blur-md object-cover absolute right-3 max-lg:-right-20 top-1/2 transform -translate-y-1/2 z-0 cursor-pointer"
+              initial={{ opacity: 0, x: 0 }}
+              animate={{ opacity: 1, x: -100 }}
+              exit={{ opacity: 0, x: 0 }}
+              transition={{ duration: 0.4, ease: "easeInOut" }}
+              onClick={() => {
+                setDirection(1);
+                setProgress(0);
+                setIndex((i) => i + 1);
+                setPause(false);
+              }}
+              draggable={false}
+              onContextMenu={(e) => e.preventDefault()}
+            />
+          ) : (
+            <motion.div
+              className="rounded-3xl h-[60vh] max-h-[60vh] aspect-[3/4] max-lg:h-[40vh] max-lg:w-20 blur-md  max-lg:-right-10 top-1/2 transform  z-0 cursor-pointer pr-30 bg-inactive"
+              onClick={() => {
                 if (mode === "single")
                   return navigate(`/profile/${feed[0].username}`);
                 else if (mode === "feed") return navigate("/");
-              }
-              setIndex((i) => i + 1);
-              setPause(false);
-            }}
-            draggable={false}
-            onContextMenu={(e) => e.preventDefault()}
-          />
+              }}
+            ></motion.div>
+          )}
         </AnimatePresence>
       </div>
     </div>

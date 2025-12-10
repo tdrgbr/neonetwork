@@ -15,7 +15,6 @@ import {
 } from "../utils/userApi";
 import Swal from "sweetalert2";
 import { ClipLoader } from "react-spinners";
-import { DOMAIN } from "../utils/config";
 
 const handlePassword = async (currentPass, newPass) => {
   try {
@@ -162,8 +161,8 @@ const Settings = () => {
   const [userInfo, setUserInfo] = useState(user);
   if (loading) {
     return (
-      <div className="flex justify-center items-center min-lg:ml-80 min-h-screen">
-        <ClipLoader color="#b15af5" size={60} />
+      <div className="flex text-secondary justify-center items-center min-lg:ml-80 min-h-screen">
+        <ClipLoader color="" size={60} />
       </div>
     );
   }
@@ -173,36 +172,46 @@ const Settings = () => {
         <img
           src={`${userInfo.avatar}`}
           alt="profile_img"
-          className="rounded-full h-48 w-48 max-lg:h-24 max-lg:w-24 object-fit"
+          className="flex rounded-full h-36 w-36 max-lg:h-20 max-lg:w-20 object-fit relative shrink-0"
           draggable={false}
           onContextMenu={(e) => e.preventDefault()}
         />
         <div className="flex flex-col space-y-2">
-          <h1 className="text-white font-bold font-other text-3xl max-lg:text-xl">
+          <h1 className="text-secondary font-bold font-other text-3xl max-lg:text-xl">
             {userInfo.username}
           </h1>
           <div className="flex items-center space-x-3">
-            <h1 className="text-white font-other text-md">
-              <b>{followers}</b> followers
+            <h1 className="text-secondary font-other text-md">
+              <div className="flex flex-col text-[0.9rem]">
+                <p>
+                  <b>{followers}</b>
+                </p>
+                <p>followers</p>
+              </div>
             </h1>
-            <h1 className="text-white font-other text-md">
-              <b>{following}</b> following
+            <h1 className="text-secondary font-other text-md">
+              <div className="flex flex-col text-[0.9rem]">
+                <p>
+                  <b>{following}</b>
+                </p>
+                <p>following</p>
+              </div>
             </h1>
           </div>
           <NavLink
             to={`/profile/${userInfo.username}`}
-            className="mt-3 rounded-full h-8 flex-grow bg-black/50 text-white font-other cursor-pointer hover:transition hover:scale-102 font-tightest flex items-center justify-center space-x-2 p-5"
+            className="mt-3 rounded-lg h-8 flex-grow bg-inactive text-secondary font-other cursor-pointer hover:transition hover:scale-102 font-tightest flex items-center justify-center space-x-2 p-5"
           >
-            <BackIcon className="h-5" />
-            <span>Back to profile</span>
+            <BackIcon className="h-5 w-5 text-secondary" />
+            <span className="max-lg:text-xs">Back to profile</span>
           </NavLink>
         </div>
       </div>
 
       <div>
-        <div className="mt-10 min-lg:mt-1 flex flex-wrap flex-grow justify-start max-lg:ml-15 max-lg:pr-15 min-lg:p-10 gap-2 text-white">
-          <div className="p-4 ml-1 w-full font-other flex space-x-3 bg-cards rounded-xl items-center justify-start">
-            <h1 className="text-lg">Public account</h1>
+        <div className="mt-10 min-lg:mt-1 flex flex-wrap flex-grow justify-start max-lg:ml-15 max-lg:pr-15 min-lg:p-10 gap-2 text-secondary">
+          <div className="py-4 w-full font-other flex space-x-3 bg-cards rounded-xl items-center justify-start">
+            <h1 className="text-md px-3">Public account</h1>
             <button
               onClick={() => handleChange(setAccountType)}
               className={`relative inline-flex h-6 w-15 items-center rounded-full transition-colors ${
@@ -217,12 +226,12 @@ const Settings = () => {
             </button>
           </div>
 
-          <div className="p-3 w-full font-other space-y-3 flex flex-col">
+          <div className="py-3 w-full font-other space-y-3 flex flex-col">
             <span>Username</span>
-            <div className="bg-cards p-3 w-full rounded-lg font-other relative border-[#630ec4] border-1 hover:border-active">
+            <div className="bg-cards p-3 w-full rounded-lg font-other relative border-inactive border-1 hover:border-active">
               <input
                 type="input"
-                className="w-full focus:outline-0 p-1 placeholder-gray-400 focus:placeholder-gray-300"
+                className="w-full focus:outline-0 p-1 placeholder-secondary"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
               />
@@ -233,12 +242,12 @@ const Settings = () => {
             </div>
           </div>
 
-          <div className="p-3 w-full font-other space-y-3 flex flex-col">
+          <div className="py-3 w-full font-other space-y-3 flex flex-col">
             <span>E-mail</span>
-            <div className="bg-cards p-3 w-full rounded-lg font-other relative border-[#630ec4] border-1 hover:border-active">
+            <div className="bg-cards p-3 w-full rounded-lg font-other relative border-inactive border-1 hover:border-active">
               <input
                 type="email"
-                className="w-full focus:outline-0 p-1 placeholder-gray-400 focus:placeholder-gray-300"
+                className="w-full focus:outline-0 p-1 placeholder-secondary"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
@@ -249,21 +258,21 @@ const Settings = () => {
             </div>
           </div>
 
-          <div className="p-3 w-full font-other space-y-3 flex flex-col">
+          <div className="py-3 w-full font-other space-y-3 flex flex-col">
             <span>Update password</span>
-            <div className="bg-cards p-3 w-full rounded-lg font-other border-[#630ec4] border-1 hover:border-active">
+            <div className="bg-cards p-3 w-full rounded-lg font-other border-inactive border-1 hover:border-active">
               <input
                 type="password"
-                className="w-full focus:outline-0 p-1 placeholder-gray-400 focus:placeholder-gray-300"
+                className="w-full focus:outline-0 p-1 placeholder-secondary"
                 placeholder="Enter your current password"
                 onChange={(e) => setCurrentPass(e.target.value)}
               />
             </div>
 
-            <div className="bg-cards p-3 w-full rounded-lg font-other relative border-[#630ec4] border-1 hover:border-active">
+            <div className="bg-cards p-3 w-full rounded-lg font-other relative border-inactive border-1 hover:border-active">
               <input
                 type="password"
-                className="w-full focus:outline-0 p-1 placeholder-gray-400 focus:placeholder-gray-300"
+                className="w-full focus:outline-0 p-1 placeholder-secondary"
                 placeholder="Enter your new password"
                 onChange={(e) => setNewPass(e.target.value)}
               />
@@ -275,9 +284,9 @@ const Settings = () => {
 
             <button
               onClick={async () => await logout()}
-              className="mt-5 rounded-lg h-8 flex-grow bg-red-400/40 text-white font-other cursor-pointer hover:transition hover:scale-102 font-tightest flex items-center justify-center space-x-2 p-5"
+              className="mt-5 rounded-lg h-8 flex-grow bg-red-400 text-text-highlight font-other cursor-pointer hover:transition hover:scale-102 font-tightest flex items-center justify-center space-x-2 p-5"
             >
-              <LogoutIcon className="h-6" />
+              <LogoutIcon className="h-6 w-6 text-text-highlight" />
               <span>Log out</span>
             </button>
           </div>

@@ -36,11 +36,11 @@ const PostCard = ({ imgUrl, likes, comments, to }) => (
       draggable={false}
       onContextMenu={(e) => e.preventDefault()}
     />
-    <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity duration-300 cursor-pointer">
-      <div className="text-white text-lg font-other font-bold flex gap-4 items-center">
-        <LikeIcon className="h-6 min-md:h-8 text-active" />
+    <div className="absolute inset-0 bg-profile/50 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity duration-300 cursor-pointer">
+      <div className="text-text-highlight text-lg font-other font-bold flex gap-4 items-center">
+        <LikeIcon className="h-6 w-6 min-md:h-8 text-active" />
         <span className="text-sm min-md:text-lg">{likes}</span>
-        <CommentIcon className="h-5 min-md:h-7" />
+        <CommentIcon className="h-6 w-6 min-md:h-7 text-text-highlight" />
         <span className="text-sm min-md:text-lg">{comments}</span>
       </div>
     </div>
@@ -164,7 +164,7 @@ const UserListModal = ({
   <AnimatePresence>
     {isOpen && (
       <motion.div
-        className="fixed inset-0 z-50 flex items-center justify-center bg-black/70"
+        className="fixed inset-0 z-50 flex items-center justify-center bg-profile/70"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
@@ -177,7 +177,7 @@ const UserListModal = ({
           exit={{ y: "100%" }}
           onClick={(e) => e.stopPropagation()}
         >
-          <h1 className="font-other font-light text-white text-lg mb-4">
+          <h1 className="font-other font-light text-secondary text-lg mb-4">
             {userName}'s {listType === 0 ? "followers" : "following"} list (
             {users.length})
           </h1>
@@ -203,7 +203,7 @@ const UserListModal = ({
                       draggable={false}
                       onContextMenu={(e) => e.preventDefault()}
                     />
-                    <span className="text-white font-other">
+                    <span className="text-secondary font-other">
                       {follow.username}
                     </span>
                   </NavLink>
@@ -212,9 +212,9 @@ const UserListModal = ({
                     <button
                       className={`rounded-lg h-5 ${
                         isFollowing || isRequested
-                          ? "bg-black/50 "
+                          ? "bg-profile/50 "
                           : "bg-active"
-                      } text-white font-other cursor-pointer hover:scale-102 flex items-center justify-center space-x-2 p-3 text-sm w-26 ml-20`}
+                      } text-secondary font-other cursor-pointer hover:scale-102 flex items-center justify-center space-x-2 p-3 text-sm w-26 ml-20`}
                       onClick={() => {
                         if (follow.accounttype || isFollowing) {
                           submitModalFollow(
@@ -408,8 +408,8 @@ const Profile = () => {
 
   if (loading) {
     return (
-      <div className="flex justify-center items-center min-lg:ml-80 min-h-screen">
-        <ClipLoader color="#b15af5" size={60} />
+      <div className="flex justify-center text-secondary items-center min-lg:ml-80 min-h-screen">
+        <ClipLoader color="" size={60} />
       </div>
     );
   }
@@ -429,7 +429,7 @@ const Profile = () => {
           <img
             src={`${profile.avatar}`}
             alt={profile.username}
-            className={`flex grow rounded-full h-48 w-48 max-lg:h-20 max-lg:w-20 object-fit relative shrink-0 ${
+            className={`flex grow rounded-full h-36 w-36 max-lg:h-20 max-lg:w-20 object-fit relative shrink-0 ${
               name === user.username
                 ? "hover:opacity-40 cursor-pointer transition-all duration-100"
                 : story?.is_public
@@ -451,7 +451,7 @@ const Profile = () => {
             }}
           />
           <EditIcon
-            className={`absolute -right-2 bottom-2 h-10 w-10 text-white bg-black rounded-full p-2 shadow-md cursor-pointer hover:scale-110 transition-transform duration-150 ${
+            className={`absolute -right-2 bottom-2 h-10 w-10 text-secondary bg-profile rounded-full p-2 shadow-md cursor-pointer hover:scale-110 transition-transform duration-150 ${
               name !== user.username ? "hidden" : ""
             }`}
             onClick={() => {
@@ -462,13 +462,13 @@ const Profile = () => {
           />
         </div>
         <div className="flex flex-col space-y-0.5">
-          <h1 className="text-white font-bold font-other text-3xl max-lg:text-xl">
+          <h1 className="text-secondary font-bold font-other text-3xl max-lg:text-xl">
             {profile.username}
           </h1>
 
-          <div className="flex items-center space-x-3 mt-2">
+          <div className="flex items-center space-x-3 mt-2 font-other">
             <h1
-              className="text-white font-other text-md cursor-pointer"
+              className="text-secondary font-other text-md cursor-pointer"
               onClick={() => {
                 if (
                   profile.accounttype ||
@@ -480,7 +480,7 @@ const Profile = () => {
                 }
               }}
             >
-              <div className="flex flex-col">
+              <div className="flex flex-col text-[0.9rem]">
                 <p>
                   <b>{followers.length}</b>
                 </p>
@@ -488,7 +488,7 @@ const Profile = () => {
               </div>
             </h1>
             <h1
-              className="text-white font-other text-md cursor-pointer"
+              className="text-secondary font-other text-md cursor-pointer"
               onClick={() => {
                 if (
                   profile.accounttype ||
@@ -500,7 +500,7 @@ const Profile = () => {
                 }
               }}
             >
-              <div className="flex flex-col">
+              <div className="flex flex-col text-[0.9rem] ">
                 <p>
                   <b>{following.length}</b>
                 </p>
@@ -513,8 +513,10 @@ const Profile = () => {
             {name !== user.username ? (
               <button
                 className={`rounded-xl h-8 flex-grow ${
-                  followUser || requested ? "bg-black/50" : "bg-active"
-                } text-white font-other cursor-pointer hover:scale-102 flex items-center justify-center space-x-2 p-5`}
+                  followUser || requested
+                    ? "bg-inactive text-secondary"
+                    : "bg-active text-text-highlight"
+                }  font-other cursor-pointer hover:scale-102 flex items-center justify-center space-x-2 p-5 text-contrast`}
                 onClick={() => {
                   if (profile.accounttype || followUser) {
                     submitProfileFollow(
@@ -535,9 +537,9 @@ const Profile = () => {
                 }}
               >
                 {loadingButton ? (
-                  <ClipLoader color="#fff" size={20} />
+                  <ClipLoader color="text-text-highlight" size={20} />
                 ) : (
-                  <FollowIcon className="h-5" />
+                  <FollowIcon className="h-5 w-5" />
                 )}
                 <span className="max-lg:text-xs">
                   {followUser
@@ -552,19 +554,19 @@ const Profile = () => {
             ) : (
               <NavLink
                 to="/settings"
-                className="rounded-xl h-8 flex-grow bg-black/50 text-white font-other hover:scale-102 flex items-center justify-center space-x-2 p-5"
+                className="rounded-xl h-8 flex-grow bg-inactive text-secondary font-other hover:scale-102 flex items-center justify-center space-x-2 p-5"
               >
-                <SettingsIcon className="h-5" />
+                <SettingsIcon className="h-5 w-5 text-secondary" />
                 <span className="max-lg:text-xs">Settings</span>
               </NavLink>
             )}
             {name !== user.username && (profile.accounttype || followUser) && (
               <button
-                className="rounded-xl h-8 bg-black/50 text-white font-other hover:scale-102 flex items-center justify-center space-x-2 py-5 px-3 cursor-pointer"
+                className="rounded-xl h-8 bg-inactive font-other hover:scale-102 flex items-center justify-center space-x-2 py-5 px-3 cursor-pointer"
                 onClick={() => handleConversation(profile, navigate)}
               >
-                <MessageIcon className="h-6 max-md:ml-1" />
-                <span className="max-md:hidden">Message</span>
+                <MessageIcon className="h-6 max-md:ml-1 text-secondary" />
+                <span className="max-md:hidden text-secondary">Message</span>
               </button>
             )}
           </div>
@@ -573,7 +575,7 @@ const Profile = () => {
 
       {profile.accounttype || followUser || name === user.username ? (
         <>
-          <h1 className="font-title ml-16 min-lg:ml-10 text-xl text-white mt-10 max-lg:mb-5 tracking-[0.25em]">
+          <h1 className="font-title ml-16 min-lg:ml-10 text-lg   text-secondary mt-5 max-lg:mb-5 tracking-[0.25em]">
             Posts
           </h1>
 
@@ -592,14 +594,14 @@ const Profile = () => {
                   );
               })
             ) : (
-              <span className="text-white flex justify-center text-lg">
+              <span className="text-secondary flex justify-center text-lg">
                 No posts to show.
               </span>
             )}
           </div>
         </>
       ) : (
-        <div className="text-white flex flex-col items-center justify-center gap-5 mt-20 overflow-hidden">
+        <div className="text-secondary flex flex-col items-center justify-center gap-5 mt-20 overflow-hidden">
           <PrivateIcon className="h-36" />
           <h1>This account is private.</h1>
         </div>

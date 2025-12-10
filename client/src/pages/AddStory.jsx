@@ -92,11 +92,11 @@ const AddStory = () => {
 
   return (
     <>
-      <h1 className="font-title mt-30 ml-7 min-lg:ml-90 text-2xl text-white">
+      <h1 className="font-title mt-30 ml-7 min-lg:ml-90 text-2xl text-secondary">
         <span className="text-secondary">Connections / </span>Add Story
       </h1>
 
-      <div className="font-other mt-10 min-lg:ml-90 text-white">
+      <div className="font-other mt-10 min-lg:ml-90 text-secondary">
         {/* Steps indicator */}
         <div className="flex justify-center items-center w-full">
           <div className="flex items-center gap-10 max-lg:gap-10 transition-all duration-300">
@@ -104,7 +104,9 @@ const AddStory = () => {
               <div
                 key={idx}
                 className={`relative flex items-center h-20 max-lg:h-16 max-lg:w-16 w-20 ${
-                  currentStep >= idx + 1 ? "bg-active" : "bg-cards"
+                  currentStep >= idx + 1
+                    ? "bg-active text-text-highlight"
+                    : "bg-highlight text-secondary"
                 } rounded-full p-5`}
               >
                 <Icon className="h-10" />
@@ -145,11 +147,11 @@ const AddStory = () => {
             {currentStep === 1 && (
               <div
                 onClick={handleClick}
-                className="mt-5 px-6 py-3 bg-cards text-white rounded-4xl shadow hover:scale-102 transition cursor-pointer w-72 h-96 flex items-center justify-center aspect-1/2"
+                className="mt-5 px-6 py-3 bg-cards text-secondary rounded-4xl shadow hover:scale-102 transition cursor-pointer w-72 h-96 flex items-center justify-center aspect-1/2"
               >
                 <div className="flex flex-col justify-center items-center gap-5">
                   <h5>Tap to proceed</h5>
-                  <UploadIcon className="h-15 " />
+                  <UploadIcon className="h-15" />
                 </div>
               </div>
             )}
@@ -166,20 +168,20 @@ const AddStory = () => {
                     onClick={() => {
                       handlePublish(photoFile);
                     }}
-                    className="mt-5 px-6 py-3 bg-active text-white rounded-xl shadow hover:scale-102 transition cursor-pointer"
+                    className="mt-5 px-6 py-3 bg-active text-text-highlight rounded-xl shadow hover:scale-102 transition cursor-pointer"
                   >
                     {!loading ? (
                       "Publish"
                     ) : (
                       <div className="inline-flex gap-2">
-                        <ClipLoader color="#fff" size="20px" />
+                        <ClipLoader color="text-text-highlight" size="20px" />
                         Uploading story..
                       </div>
                     )}
                   </button>
                   <button
                     onClick={() => navigate("/")}
-                    className="mt-5 px-6 py-3 bg-red-400 text-white rounded-xl shadow hover:scale-102 transition cursor-pointer"
+                    className="mt-5 px-6 py-3 bg-red-500 text-text-highlight rounded-xl shadow hover:scale-102 transition cursor-pointer"
                   >
                     Cancel
                   </button>

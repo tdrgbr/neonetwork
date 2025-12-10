@@ -90,19 +90,21 @@ const AddPost = () => {
 
   return (
     <>
-      <h1 className="font-title mt-30 ml-7 min-lg:ml-90 text-2xl text-white">
+      <h1 className="font-title mt-30 ml-7 min-lg:ml-90 text-2xl text-secondary">
         <span className="text-secondary">Connections / </span>New post
       </h1>
 
-      <div className="font-other mt-10 min-lg:ml-90 text-white">
+      <div className="font-other mt-10 min-lg:ml-90 text-secondary">
         <div className="flex justify-center items-center w-full">
           <div className="flex items-center gap-20 max-lg:gap-10 transition-all duration-300">
             {[UploadIcon, PreviewIcon, DescriptionIcon, SubmitIcon].map(
               (Icon, idx) => (
                 <div
                   key={idx}
-                  className={`relative flex items-center h-20 max-lg:h-16 max-lg:w-16 ${
-                    currentStep >= idx + 1 ? "bg-active" : "bg-cards"
+                  className={`relative flex items-center h-20 w-20 max-lg:h-16 max-lg:w-16 ${
+                    currentStep >= idx + 1
+                      ? "bg-active text-text-highlight"
+                      : "bg-cards text-secondary"
                   } rounded-full p-5`}
                 >
                   <Icon className="h-10" />
@@ -141,7 +143,7 @@ const AddPost = () => {
             {currentStep === 1 && (
               <div
                 onClick={handleClick}
-                className="mt-5 px-6 py-3 bg-cards text-white rounded-4xl shadow hover:scale-102 transition cursor-pointer w-72 h-96 flex items-center justify-center aspect-1/2"
+                className="mt-5 px-6 py-3 bg-cards text-secondary rounded-4xl shadow hover:scale-102 transition cursor-pointer w-72 h-96 flex items-center justify-center aspect-1/2"
               >
                 <div className="flex flex-col justify-center items-center gap-5">
                   <h5>Tap to proceed</h5>
@@ -160,13 +162,13 @@ const AddPost = () => {
                 <div className="flex space-x-3 mb-10">
                   <button
                     onClick={() => setCurrentStep(3)}
-                    className="mt-5 px-6 py-3 bg-active text-white rounded-xl shadow hover:scale-102 transition cursor-pointer"
+                    className="mt-5 px-6 py-3 bg-active text-text-highlight rounded-xl shadow hover:scale-102 transition cursor-pointer"
                   >
                     Next step
                   </button>
                   <button
                     onClick={() => navigate("/")}
-                    className="mt-5 px-6 py-3 bg-red-400 text-white rounded-xl shadow hover:scale-102 transition cursor-pointer"
+                    className="mt-5 px-6 py-3 bg-red-500 text-text-highlight rounded-xl shadow hover:scale-102 transition cursor-pointer"
                   >
                     Cancel
                   </button>
@@ -179,7 +181,7 @@ const AddPost = () => {
                 <div className="bg-cards p-3 w-100 rounded-lg font-other relative border-[#630ec4] border-1 hover:border-active">
                   <input
                     type="input"
-                    className="w-full focus:outline-0 p-1 placeholder-gray-400 focus:placeholder-gray-300"
+                    className="w-full focus:outline-0 p-1 placeholder-secondary focus:placeholder-secondary/55"
                     placeholder="Ex: A sunny day at the beach 🌊"
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
@@ -188,13 +190,13 @@ const AddPost = () => {
                 <div className="flex space-x-3 mb-10">
                   <button
                     onClick={() => setCurrentStep(4)}
-                    className="mt-5 px-6 py-3 bg-active text-white rounded-xl shadow hover:scale-102 transition cursor-pointer"
+                    className="mt-5 px-6 py-3 bg-active text-text-highlight rounded-xl shadow hover:scale-102 transition cursor-pointer"
                   >
                     Save & next step
                   </button>
                   <button
                     onClick={() => setCurrentStep(2)}
-                    className="mt-5 px-6 py-3 bg-red-400 text-white rounded-xl shadow hover:scale-102 transition cursor-pointer"
+                    className="mt-5 px-6 py-3 bg-red-500 text-text-highlight rounded-xl shadow hover:scale-102 transition cursor-pointer"
                   >
                     Back
                   </button>
@@ -227,14 +229,14 @@ const AddPost = () => {
                               />
                             </div>
                             <div className="space-x-3">
-                              <span className="font-other font-bold text-white text-lg truncate">
+                              <span className="font-other font-bold text-secondary text-lg truncate">
                                 {user.username}
                               </span>
                               <span className="font-other text-secondary text-sm truncate">
                                 just now
                               </span>
                             </div>
-                            <span className="font-other text-white text-md mt-2 truncate">
+                            <span className="font-other text-secondary text-md mt-2 truncate">
                               {description}
                             </span>
                           </div>
@@ -243,14 +245,14 @@ const AddPost = () => {
 
                       <div className="flex space-x-3 justify-start">
                         <div className="flex flex-col items-center justify-center cursor-pointer">
-                          <LikeIcon className="h-12 max-lg:h-10 w-12 text-white" />
-                          <h1 className="font-other text-white text-md mt-1">
+                          <LikeIcon className="h-10 w-10 text-secondary" />
+                          <h1 className="font-other text-secondary text-md mt-1">
                             0
                           </h1>
                         </div>
                         <div className="flex flex-col items-center justify-center cursor-pointer">
-                          <CommentIcon className="h-12 max-lg:h-10 w-12" />
-                          <h1 className="font-other text-white text-md mt-1">
+                          <CommentIcon className="h-10 w-10" />
+                          <h1 className="font-other text-secondary text-md mt-1">
                             0
                           </h1>
                         </div>
@@ -263,20 +265,20 @@ const AddPost = () => {
                     onClick={() =>
                       handlePublish(photoFile, description, user, navigate)
                     }
-                    className="mt-5 px-6 py-3 bg-active text-white rounded-xl shadow hover:scale-102 transition cursor-pointer"
+                    className="mt-5 px-6 py-3 bg-active text-text-highlight rounded-xl shadow hover:scale-102 transition cursor-pointer"
                   >
                     {!loading ? (
                       "Publish"
                     ) : (
-                      <div className="flex inline-flex gap-2">
-                        <ClipLoader color="#fff" size="20px" />
+                      <div className="inline-flex gap-2">
+                        <ClipLoader color="text-text-highlight" size="20px" />
                         Uploading post..
                       </div>
                     )}
                   </button>
                   <button
                     onClick={() => setCurrentStep(3)}
-                    className="mt-5 px-6 py-3 bg-red-400 text-white rounded-xl shadow hover:scale-102 transition cursor-pointer"
+                    className="mt-5 px-6 py-3 bg-red-500 text-text-highlight rounded-xl shadow hover:scale-102 transition cursor-pointer"
                   >
                     Back
                   </button>

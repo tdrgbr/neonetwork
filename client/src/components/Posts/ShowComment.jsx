@@ -24,7 +24,7 @@ const ShowComment = ({ comment }) => {
           />
         </NavLink>
         <NavLink to={`/profile/${comment.username}`}>
-          <h1 className="font-other text-white font-bold">
+          <h1 className="font-other text-secondary font-bold">
             {comment.username}{" "}
             <span className="text-sm text-secondary font-normal ml-1">
               {time}
@@ -33,7 +33,7 @@ const ShowComment = ({ comment }) => {
           </h1>
         </NavLink>
       </div>
-      <p className="font-other text-white mt-2">{comment.comment}</p>
+      <p className="font-other text-secondary mt-2">{comment.comment}</p>
     </div>
   );
 };

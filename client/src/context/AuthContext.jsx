@@ -79,8 +79,8 @@ export const AuthProvider = ({ children }) => {
   };
   if (loading) {
     return (
-      <div className="flex justify-center items-center min-h-screen">
-        <ClipLoader color="#b15af5" size={60} />
+      <div className="flex justify-center items-center min-h-screen text-secondary">
+        <ClipLoader color="" size={60} />
       </div>
     );
   }

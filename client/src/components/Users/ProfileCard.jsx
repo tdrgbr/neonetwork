@@ -10,8 +10,8 @@ const ProfileCard = () => {
       to={`/profile/${user.username}`}
       className={({ isActive }) =>
         !isActive
-          ? "mt-8 bg-[rgba(0,0,0,0.32)] h-auto rounded-xl text-white font-other p-3 flex justify-between hover:bg-[rgba(0,0,0,0.65)] hover:cursor-pointer hover:shadow-2xl hover:scale-105 hover:transition hover:duration-300 scale-105 transition duration-300"
-          : "mt-8 bg-[rgba(0,0,0,0.65)] h-auto rounded-xl text-white font-other p-3 flex justify-between hover:scale-100 hover:transition hover:duration-300 duration-300"
+          ? "mt-8 bg-profile h-auto rounded-xl text-secondary font-other p-3 flex justify-between hover:bg-profile/30 hover:cursor-pointer hover:shadow-lg hover:scale-105 hover:transition hover:duration-300 scale-105 transition duration-300"
+          : "mt-8 bg-profile/30 h-auto rounded-xl text-secondary font-other p-3 flex justify-between hover:scale-100 hover:transition hover:duration-300 duration-300"
       }
     >
       <div className="flex items-center">
@@ -23,13 +23,12 @@ const ProfileCard = () => {
           className="h-13 w-13 rounded-full shrink-0 p-0"
         />
         <div className="ml-3 p-1.5">
-          <h2 className="font-bold text-[1rem]">{user.username}</h2>
-          <h2 className="text-secondary text-[0.9rem]">
+          <h2 className="font-bold text-[0.9rem]">{user.username}</h2>
+          <h2 className="text-secondary text-[0.8rem]">
             {user.accounttype ? "Public account" : "Private account"}
           </h2>
         </div>
       </div>
-      <span className="text-white text-2xl mt-3">➤</span>
     </NavLink>
   );
 };

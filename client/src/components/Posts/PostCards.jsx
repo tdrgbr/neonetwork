@@ -45,15 +45,15 @@ const PostCards = () => {
 
   if (initialLoading && feed.length === 0) {
     return (
-      <div className="flex justify-center items-center min-h-screen">
-        <ClipLoader color="#b15af5" size={60} />
+      <div className="flex justify-center items-center min-h-screen text-secondary">
+        <ClipLoader color="" size={60} />
       </div>
     );
   }
 
   return (
     <>
-      <h1 className="font-title mt-10 ml-7 mb-6 text-2xl text-white">
+      <h1 className="font-title mt-10 ml-7 mb-6 text-2xl text-secondary">
         <span className="text-secondary">Feed / </span>Latest posts
       </h1>
 
@@ -62,12 +62,12 @@ const PostCards = () => {
         next={() => fetchPage(page)}
         hasMore={hasMore}
         loader={
-          <div className="py-6 flex justify-center">
-            <ClipLoader size={28} color="#b15af5" />
+          <div className="py-6 flex justify-center text-secondary">
+            <ClipLoader size={28} color="" />
           </div>
         }
         endMessage={
-          <div className="py-6 text-sm text-white font-other text-center">
+          <div className="py-6 text-sm text-secondary font-other text-center">
             You've reached the end!
           </div>
         }

@@ -19,7 +19,9 @@ const LoadStories = ({ story }) => {
           onContextMenu={(e) => e.preventDefault()}
         />
       </div>
-      <span className="font-other text-white text-sm">{story.username}</span>
+      <span className="font-other text-secondary text-sm">
+        {story.username}
+      </span>
     </NavLink>
   );
 };

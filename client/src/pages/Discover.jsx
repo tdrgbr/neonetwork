@@ -18,7 +18,7 @@ const Discover = () => {
 
   return (
     <>
-      <h1 className="font-title mt-30 ml-7 min-lg:ml-90 text-2xl text-white">
+      <h1 className="font-title mt-30 ml-7 min-lg:ml-90 text-2xl text-secondary">
         <span className="text-secondary">Connections / </span>Discover
       </h1>
 
@@ -26,7 +26,7 @@ const Discover = () => {
         <Searchbar />
       </div>
 
-      <h1 className="font-other ml-7 mt-10 min-lg:ml-90 text-lg text-white tracking-tight">
+      <h1 className="font-other ml-7 mt-10 min-lg:ml-90 text-lg text-secondary tracking-tight">
         Suggested for you
       </h1>
 
@@ -50,7 +50,7 @@ const Discover = () => {
                 <div className="flex-col">
                   <NavLink
                     to={`/profile/${user.username}`}
-                    className="font-other text-white text-xl font-bold"
+                    className="font-other text-secondary text-xl font-bold"
                   >
                     {user.username}
                   </NavLink>
@@ -62,7 +62,7 @@ const Discover = () => {
 
               <NavLink
                 to={`/profile/${user.username}`}
-                className="rounded-xl h-10 w-34 bg-active/40 text-white font-other cursor-pointer hover:transition hover:scale-102 font-tightest flex items-center justify-center space-x-2"
+                className="rounded-xl h-10 w-34 bg-active/40 text-secondary font-other cursor-pointer hover:transition hover:scale-102 font-tightest flex items-center justify-center space-x-2"
               >
                 <span>View profile</span>
               </NavLink>

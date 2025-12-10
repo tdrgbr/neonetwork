@@ -37,7 +37,7 @@ const handleSubmit = async (postId, comment, setPost, setComment, user) => {
 function CommentInput({ postId, setPost, user }) {
   const [comment, setComment] = useState("");
   return (
-    <div className="mt-8 bg-cards w-auto h-10 mr-4 rounded-xl text-white font-other relative">
+    <div className="mt-8 bg-cards w-auto h-10 mr-4 rounded-xl text-secondary font-other relative">
       <div className="flex">
         <NavLink to={`/profile/${user.username}`}>
           <img
@@ -75,7 +75,7 @@ const CommentList = React.memo(({ comments }) => {
   comments;
   if (!comments) {
     return (
-      <h2 className="font-other text-white mt-30 p-5 text-center">
+      <h2 className="font-other text-secondary mt-30 p-5 text-center">
         There are currently no comments. What about breaking the ice?
       </h2>
     );
@@ -123,10 +123,10 @@ const ShowPost = ({ post }) => {
     <>
       <div className="flex flex-col space-y-0 shrink-0 mb-10 w-full max-w-[520px]">
         <div className="relative">
-          <div className="absolute top-1 right-1 flex flex-col justify-between">
+          <div className="absolute -top-3 -right-3 flex flex-col justify-between">
             {post.username === user.username ? (
               <button
-                className="bg-black/70 p-3 text-white rounded-2xl shadow-lg cursor-pointer"
+                className="bg-secondary p-3 text-text-highlight rounded-2xl shadow-lg cursor-pointer"
                 onClick={async () => {
                   await deletePost(post.id);
                   navigate(`/profile/${user.username}`);
@@ -163,7 +163,7 @@ const ShowPost = ({ post }) => {
                   to={`/profile/${localPost.username}`}
                   className="space-x-3"
                 >
-                  <span className="font-other font-bold text-white text-lg truncate">
+                  <span className="font-other font-bold text-secondary text-lg truncate">
                     {localPost.username}
                   </span>
                   <span className="font-other text-secondary text-sm truncate">
@@ -171,7 +171,7 @@ const ShowPost = ({ post }) => {
                     {unit}
                   </span>
                 </NavLink>
-                <span className="font-other text-white text-md mt-2 truncate">
+                <span className="font-other text-secondary text-md mt-2 truncate">
                   {localPost.description}
                 </span>
               </div>
@@ -195,12 +195,16 @@ const ShowPost = ({ post }) => {
                 }}
               >
                 <LikeIcon
-                  className={`h-12 max-lg:h-10 w-12 ${
-                    liked ? "text-active" : "text-white"
+                  className={`h-10 w-10 ${
+                    liked ? "text-active" : "text-secondary"
                   }`}
                 />
 
-                <h1 className="font-other text-white text-md mt-1">
+                <h1
+                  className={`font-other  text-md mt-1 ${
+                    liked ? "text-active" : "text-secondary"
+                  }`}
+                >
                   {localPost.likes_count}
                 </h1>
               </div>
@@ -211,8 +215,8 @@ const ShowPost = ({ post }) => {
                 className="flex flex-col items-center justify-center cursor-pointer"
                 onClick={() => setCommentsOpen(!commentsOpen)}
               >
-                <CommentIcon className="h-12 max-lg:h-10 w-12" />
-                <h1 className="font-other text-white text-md mt-1">
+                <CommentIcon className="h-10 w-10 text-secondary" />
+                <h1 className="font-other text-secondary text-md mt-1">
                   {localPost.comments_count}
                 </h1>
               </div>
@@ -252,7 +256,7 @@ const ShowPost = ({ post }) => {
                     />
                   </NavLink>
                   <div className="flex-col">
-                    <h1 className="font-title tracking-widest font-bold text-white text-xl">
+                    <h1 className="font-title tracking-widest font-bold text-secondary text-xl">
                       {localPost.username}'s post
                     </h1>
                     <h1 className="font-other text-secondary text-md">

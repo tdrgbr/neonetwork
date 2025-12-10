@@ -53,7 +53,7 @@ const StoriesBar = () => {
               onContextMenu={(e) => e.preventDefault()}
             />
           </div>
-          <span className="font-other text-white text-sm">Your story</span>
+          <span className="font-other text-secondary text-sm">Your story</span>
         </NavLink>
       ) : (
         <NavLink
@@ -68,11 +68,11 @@ const StoriesBar = () => {
               draggable={false}
               onContextMenu={(e) => e.preventDefault()}
             />
-            <div className="absolute bottom-0 right-0 bg-active text-white rounded-full h-6 w-6 flex items-center justify-center border-2 border-[#1e1f3f] font-extrabold text-md">
+            <div className="absolute bottom-0 right-0 bg-active text-secondary rounded-full h-6 w-6 flex items-center justify-center border-2 border-[#1e1f3f] font-extrabold text-md">
               <img src="https://imgur.com/lJfdvan.png" alt="Add story" />
             </div>
           </div>
-          <span className="font-other text-white text-sm">Add story</span>
+          <span className="font-other text-secondary text-sm">Add story</span>
         </NavLink>
       )}
       {feed?.map((f) => (

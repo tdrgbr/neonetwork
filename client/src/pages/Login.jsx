@@ -28,9 +28,9 @@ const Login = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-linear-to-bl from-[#1a4569] to-[#3e1a69] font-other">
-      <div className="p-8 rounded-2xl shadow-lg w-full max-md:max-w-sm max-w-xl bg-cards text-white border-1 border-active">
-        <h1 className="font-title text-white text-5xl text-left mb-10">
+    <div className="flex items-center justify-center min-h-screen bg-white font-other">
+      <div className="p-8 rounded-2xl shadow-lg w-full max-md:max-w-sm max-w-xl bg-cards text-secondary border-1">
+        <h1 className="font-title text-secondary text-5xl text-left mb-10">
           Neonetwork <span className="text-3xl">/ Login</span>
         </h1>
 
@@ -58,14 +58,14 @@ const Login = () => {
           </div>
 
           <button
-            className="w-full bg-active text-white py-2.5 rounded-lg hover:scale-102 transition cursor-pointer duration-300"
+            className="w-full bg-active text-secondary py-2.5 rounded-lg hover:scale-102 transition cursor-pointer duration-300"
             onClick={handleLogin}
           >
             {!loading ? button : <ClipLoader color="#fff" size="20px" />}
           </button>
 
           <p className="text-sm text-center text-red-500 mb-10">{error}</p>
-          <p className="text-sm text-center mt-4 text-white">
+          <p className="text-sm text-center mt-4 text-secondary">
             New here?{" "}
             <a href="/register" className="text-active hover:opacity-90">
               Sign Up

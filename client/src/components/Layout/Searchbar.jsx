@@ -27,17 +27,15 @@ const Searchbar = () => {
   }, [debounced]);
 
   return (
-    <div className="relative bg-cards w-full mr-4 rounded-xl text-white font-other z-[999]">
+    <div className="relative bg-cards w-full mr-4 rounded-xl text-secondary font-other z-[999]">
       <input
         type="search"
-        className="w-full h-14 p-6 rounded-xl focus:outline-1 focus:outline-active placeholder-gray-400 focus:placeholder-gray-300"
+        className="w-full h-12 p-6 rounded-xl focus:outline-1 focus:outline-active placeholder-secondary focus:placeholder-secondary"
         placeholder="Search someone or something.."
         onChange={(e) => setQuery(e.target.value)}
         onBlur={() => setTimeout(() => setOpen(false), 100)}
         onFocus={() => setOpen(true)}
       />
-
-      <SearchIcon className="absolute right-5 top-1/2 transform -translate-y-1/2 h-4 w-5" />
 
       <AnimatePresence>
         {open && query && results.length > 0 && (
@@ -51,7 +49,7 @@ const Searchbar = () => {
             {results.map((item, idx) => (
               <div
                 key={idx}
-                className="flex items-center space-x-3 px-4 py-3 text-white font-other font-light cursor-pointer hover:bg-[#9746b9] transition duration-300 z-[999]"
+                className="flex items-center space-x-3 px-4 py-3 text-secondary font-other font-light cursor-pointer hover:bg-highlight transition duration-300 z-[999]"
                 onMouseDown={() => {
                   setOpen(false);
                   navigate(`/profile/${item.username}`);

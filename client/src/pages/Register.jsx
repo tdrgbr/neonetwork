@@ -50,8 +50,8 @@ const Register = () => {
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-linear-to-bl from-[#1a4569] to-[#3e1a69] font-other">
-      <div className="p-8 rounded-2xl shadow-lg w-full max-md:max-w-sm max-w-xl bg-cards text-white border-1 border-active">
-        <h1 className="font-title text-white text-5xl text-left mb-10">
+      <div className="p-8 rounded-2xl shadow-lg w-full max-md:max-w-sm max-w-xl bg-cards text-secondary border-1 border-active">
+        <h1 className="font-title text-secondary text-5xl text-left mb-10">
           Neonetwork <span className="text-3xl">/ Register</span>
         </h1>
 
@@ -90,7 +90,7 @@ const Register = () => {
           </div>
 
           <button
-            className="w-full bg-active text-white py-2.5 rounded-lg hover:scale-102 transition cursor-pointer duration-300"
+            className="w-full bg-active text-secondary py-2.5 rounded-lg hover:scale-102 transition cursor-pointer duration-300"
             onClick={() =>
               submitRegister({
                 username,
@@ -106,7 +106,7 @@ const Register = () => {
             {!loading ? button : <ClipLoader color="#fff" size="20px" />}
           </button>
           <p className="text-sm text-center text-red-500 mb-10">{error}</p>
-          <p className="text-sm text-center mt-4 text-white">
+          <p className="text-sm text-center mt-4 text-secondary">
             Already have an account?{" "}
             <a href="/login" className="text-active hover:opacity-90">
               Log in

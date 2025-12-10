@@ -9,12 +9,12 @@
 
 /* Track */
 ::-webkit-scrollbar-track {
-  @apply bg-[#9d7ff0];
+  @apply bg-highlight/30;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  @apply bg-[#8916c7];
+  @apply bg-highlight/60;
 }
 .scrollbar-hide::-webkit-scrollbar {
   @apply h-[0.13rem] w-[0.13rem];
@@ -24,9 +24,35 @@
   --font-title: "Bebas Neue", sans-serif;
   --font-other: "Bricolage Grotesque", sans-serif;
 
-  --color-secondary: oklch(0.7495 0.043 282.29);
-  --color-active: oklch(0.6417 0.2262 306.93);
-  --color-cards: oklch(0.3522 0.0882 283.5);
+  --color-secondary: #424040;
+  --color-active: #3a6dff;
+  --color-inactive: #e5e7eb;
+  --color-cards: #f5f5f5;
+  --color-profile: #eaeaea;
+  --color-highlight: #e7e9ec;
+  --color-text-highlight: #e7e9ec;
+  --color-bubble-receiver: #7a7b7d;
+  --color-icons: ;
+  --color-contrast: #fff;
+  --color-input: #f1f1f3;
+  --color-inputb: #e0e0e0;
+  --color-bgcolor: #fff;
+}
+:root.dark,
+[dir="dark"] {
+  --color-bgcolor: #141414;
+  --color-contrast: #121212;
+  --color-cards: #1e1e1e;
+  --color-profile: #252525;
+  --color-highlight: #282828;
+  --color-text-highlight: #e7e9ec;
+  --color-secondary: #e0e0e0;
+  --color-inactive: #454443;
+
+  --color-input: #333333;
+  --color-inputb: #444444;
+  --color-active: #504bd1;
+  --color-bubble-receiver: #4a4b4c;
 }
 * {
   @apply scroll-smooth;
@@ -38,6 +64,6 @@
   @apply backdrop-blur-2xl;
 }
 body {
-  @apply bg-[#272c4d];
+  @apply bg-bgcolor;
   @apply m-0 p-0 border-0;
 }

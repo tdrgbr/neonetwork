@@ -91,13 +91,13 @@ const Notifications = () => {
   }, [loading]);
   if (loading) {
     return (
-      <div className="flex justify-center items-center min-lg:ml-80 min-h-screen">
-        <ClipLoader color="#b15af5" size={60} />
+      <div className="flex text-secondary justify-center items-center min-lg:ml-80 min-h-screen">
+        <ClipLoader color="" size={60} />
       </div>
     );
   }
   return (
-    <div className="mt-30 min-lg:ml-81 font-other text-white">
+    <div className="mt-30 min-lg:ml-81 font-other text-secondary">
       <div
         className={`flex flex-col w-full max-w-full gap-0 p-6 ${
           requests.length === 0 ? "hidden" : null
@@ -110,7 +110,7 @@ const Notifications = () => {
           {requests.map((r) => (
             <div
               key={r.id}
-              className="flex items-center justify-between w-full min-w-0"
+              className="flex items-center justify-between w-full min-w-0 border-b-[0.01px] border-profile"
             >
               <div className="flex items-center space-x-2 flex-1 min-w-0">
                 <NavLink to={`/profile/${r.username}`}>
@@ -166,12 +166,12 @@ const Notifications = () => {
       </div>
 
       <div className="flex flex-col w-full max-w-full gap-0 p-6">
-        <div className="p-4 w-full flex bg-black/50 rounded-t-xl items-center justify-start">
+        <div className="p-4 w-full flex bg-highlight rounded-t-xl items-center justify-start">
           Notifications
         </div>
 
         {notifications.length === 0 ? (
-          <div className="bg-cards rounded-b-xl justify-center flex flex-col p-4 gap-6 w-full max-w-full">
+          <div className="bg-cards rounded-b-xl justify-center flex flex-col p-4 gap-6 w-full max-w-full ">
             <div className="flex items-center justify-center space-x-3 p-5">
               <CheckedIcon className="h-8" />
               <span className="text-lg">You’re all caught up!</span>
@@ -181,7 +181,7 @@ const Notifications = () => {
           notifications.map((n) => (
             <div
               key={n.id}
-              className={`justify-center flex flex-col p-4 gap-6 w-full max-w-full ${
+              className={`justify-center flex flex-col p-4 gap-6 w-full max-w-full border-b-[0.01px] border-profile ${
                 n.isNew ? "bg-active/30" : "bg-cards"
               }`}
             >
@@ -215,7 +215,7 @@ const Notifications = () => {
                 </div>
                 <NavLink
                   to={getLink(n)}
-                  className="rounded-lg bg-black/30 pl-6 pr-6 text-sm h-8 justify-center flex items-center min-lg:text-md cursor-pointer hover:scale-102 transition-all duration-300"
+                  className="rounded-lg bg-inactive text-secondary pl-6 pr-6 text-sm h-8 justify-center flex items-center min-lg:text-md cursor-pointer hover:scale-102 transition-all duration-300"
                 >
                   {getName(n)}
                 </NavLink>

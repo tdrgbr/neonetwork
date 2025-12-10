@@ -172,21 +172,21 @@ const MessageContent = () => {
 
   if (loading) {
     return (
-      <div className="flex justify-center items-center min-lg:ml-80 min-h-screen">
-        <ClipLoader color="#b15af5" size={60} />
+      <div className="flex justify-center items-center min-lg:ml-80 min-h-screen text-secondary">
+        <ClipLoader color="" size={60} />
       </div>
     );
   }
 
   return (
     <>
-      <h1 className="font-title mt-30 ml-7 min-lg:ml-90 text-2xl text-white max-md:hidden">
+      <h1 className="font-title mt-30 ml-7 min-lg:ml-90 text-2xl text-secondary max-md:hidden">
         <span className="text-secondary">Connections / </span>Messages
       </h1>
 
-      <div className="mt-10 min-lg:ml-90 flex space-x-3 mb-3 font-other text-white">
+      <div className="mt-10 min-lg:ml-90 flex space-x-3 mb-3 font-other text-secondary">
         <div className="flex flex-col bg-cards w-full h-dvh rounded-xl min-lg:mr-10 mb-3">
-          <div className="flex bg-black/50 h-20 p-0 rounded-t-xl justify-between items-center sticky top-0 z-10">
+          <div className="flex bg-highlight h-20 p-0 rounded-t-xl justify-between items-center sticky top-0 z-10">
             <NavLink
               to={`/profile/${profile.username}`}
               className="flex items-center p-3 space-x-3"
@@ -203,9 +203,9 @@ const MessageContent = () => {
             </NavLink>
             <NavLink
               to="/messages"
-              className="flex items-center p-4 m-4 space-x-2 bg-white/30 h-10 rounded-lg cursor-pointer hover:scale-103 transition-all duration-300"
+              className="flex items-center p-4 m-4 space-x-2 bg-black/50 h-10 rounded-lg cursor-pointer hover:scale-103 transition-all duration-300 text-text-highlight"
             >
-              <BackIcon className="h-5" />
+              <BackIcon className="h-5 w-5 text-icon" />
               <span>Back</span>
             </NavLink>
           </div>
@@ -222,13 +222,13 @@ const MessageContent = () => {
                 />
                 <h1>
                   Say hi to{" "}
-                  <span className="font-bold text-white">
+                  <span className="font-bold text-secondary">
                     {profile.username}
                   </span>
                 </h1>
                 <NavLink
                   to={`/profile/${profile.username}`}
-                  className="mt-3 rounded-xl h-5 bg-black/50 text-white font-other hover:scale-101 flex items-center justify-center space-x-2 p-4"
+                  className="mt-3 rounded-xl h-5 bg-active text-text-highlight font-other hover:scale-101 flex items-center justify-center space-x-2 p-4"
                 >
                   View profile
                 </NavLink>
@@ -262,10 +262,10 @@ const MessageContent = () => {
                       <div
                         className={`rounded-4xl px-5 py-3 max-w-[80%] break-words flex-shrink-0 ${
                           isError
-                            ? "bg-black/50 text-white shadow-md"
+                            ? "bg-black text-text-highlight shadow-md"
                             : isOwn
-                            ? "bg-active text-white shadow-md shadow-purple-500/20"
-                            : "bg-black/50 text-gray-100"
+                            ? "bg-active text-text-highlight shadow-active shadow-xs"
+                            : "bg-bubble-receiver text-gray-100"
                         }`}
                       >
                         {msg.message}
@@ -292,10 +292,10 @@ const MessageContent = () => {
           </div>
 
           <div className="flex h-14 p-5 mb-10">
-            <div className="relative flex w-full bg-black/50 h-14 rounded-xl text-white font-other items-center">
+            <div className="relative flex w-full bg-input h-14 rounded-xl text-secondary font-other items-center border-inputb border-1">
               <input
                 type="text"
-                className="w-full focus:outline-active focus:outline-1 rounded-xl h-14 p-6 placeholder-gray-400 focus:placeholder-gray-300"
+                className="w-full focus:outline-active focus:outline-1 rounded-xl h-14 p-6 placeholder-secondary focus:placeholder-secondary"
                 placeholder="Send a text message"
                 value={userMessage}
                 onChange={(e) => setUserMessage(e.target.value)}
@@ -313,7 +313,7 @@ const MessageContent = () => {
                 }}
               />
               <MessagesIcon
-                className="absolute right-5 top-1/2 transform -translate-y-1/2 h-6 w-6 cursor-pointer"
+                className="absolute right-5 top-1/2 transform -translate-y-1/2 h-6 w-6 cursor-pointer text-icons"
                 onClick={() =>
                   handleSubmit(
                     user,
