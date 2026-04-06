@@ -135,8 +135,19 @@ cd ../client
 npm run dev
 ```
 
-# Tips
+# Screenshots
+<img width="1919" height="1079" alt="Screenshot 2026-04-06 203503" src="https://github.com/user-attachments/assets/40b7d0cc-1c60-4d33-97b9-008460390e2f" />
+<img width="1919" height="1079" alt="Screenshot 2026-04-06 203458" src="https://github.com/user-attachments/assets/87576d27-0f9c-445a-a010-52747741a497" />
+<img width="1919" height="1079" alt="Screenshot 2026-04-06 203454" src="https://github.com/user-attachments/assets/b8ab4c79-8c94-46c5-a576-18fa93fa6af6" />
+<img width="1919" height="1079" alt="Screenshot 2026-04-06 203449" src="https://github.com/user-attachments/assets/fb636725-2708-4943-827e-1c7a05532aeb" />
+<img width="1919" height="1079" alt="Screenshot 2026-04-06 203447" src="https://github.com/user-attachments/assets/2ead693f-0ca7-4ba9-b264-071da284714a" />
+<img width="1919" height="1079" alt="Screenshot 2026-04-06 203442" src="https://github.com/user-attachments/assets/8cdbdc71-e50f-4546-8e4d-5c1073851e04" />
+<img width="1919" height="1079" alt="Screenshot 2026-04-06 203340" src="https://github.com/user-attachments/assets/8ee036f5-63bc-46ab-8f92-c9a19e591150" />
+<img width="1919" height="1079" alt="Screenshot 2026-04-06 203439" src="https://github.com/user-attachments/assets/94b0da13-7bbb-4ff1-8ffe-ccebd2b6dc12" />
+<img width="1907" height="1079" alt="Screenshot 2026-04-06 203433" src="https://github.com/user-attachments/assets/da11a428-eb3b-4700-a98e-05954f25602f" />
+<img width="1919" height="1079" alt="Screenshot 2026-04-06 203430" src="https://github.com/user-attachments/assets/e23ccb7a-4daf-4535-96fe-542e0ee4faed" />
+<img width="1919" height="1079" alt="Screenshot 2026-04-06 203349" src="https://github.com/user-attachments/assets/4553ee18-b004-4f61-8f7b-db7b2ccfa57b" />
+<img width="1919" height="1079" alt="Screenshot 2026-04-06 203345" src="https://github.com/user-attachments/assets/a08c079e-c64f-4450-95d4-bde116c610bd" />
+<img width="1919" height="1079" alt="Screenshot 2026-04-06 203510" src="https://github.com/user-attachments/assets/adffb561-196d-4ca9-b0b6-babb1bb9a0d1" />
+<img width="1919" height="1079" alt="Screenshot 2026-04-06 203513" src="https://github.com/user-attachments/assets/56031232-2634-43d8-98c5-e476cfd07876" />
 
-Configure CORS origin in `server/index.js` based on your client URL.
-
-Configure IO origin in `server/index.js` based on your server URL
